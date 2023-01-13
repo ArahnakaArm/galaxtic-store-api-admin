@@ -1,2 +1,2 @@
-# galaxtic-store-api-admin-
+# galaxtic-store-api-admin
 Api for admin page 
