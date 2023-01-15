@@ -11,10 +11,10 @@ export const userTypeDef = `
         token: String
         user: User
       }
-      
     type Mutation {
         createUser(email: String!, last_name: String!, password: String!, user_role: String!, first_name: String!): User!
         login(email: String!, password: String!): AuthPayload!
+        putUserByMe(first_name: String ,last_name: String): User!
     }
    
 `

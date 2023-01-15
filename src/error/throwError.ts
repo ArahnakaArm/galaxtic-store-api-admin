@@ -15,7 +15,7 @@ export const throwInvalid = () => {
     throw new GraphQLError(`Invalid Data.`, {
         extensions: {
             http: {
-                status: 409
+                status: 400
             },
         },
     },
