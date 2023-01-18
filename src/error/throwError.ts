@@ -48,7 +48,7 @@ export const throwInvalidPassword= () => {
     throw new GraphQLError(`Invalid Password.`, {
         extensions: {
             http: {
-                status: 404
+                status: 401
             },
         },
     },

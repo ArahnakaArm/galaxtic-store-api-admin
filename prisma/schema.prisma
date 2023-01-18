@@ -25,3 +25,13 @@ model users {
   updated_at           DateTime  @default(now()) @db.Timestamptz(6)
   deleted_at           DateTime?
 }
+
+model main_categories {
+  main_category_id        String    @id
+  main_category_name      String    @unique
+  main_category_image_url String
+  is_active               Boolean
+  created_at              DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at              DateTime  @default(now()) @db.Timestamptz(6)
+  deleted_at              DateTime?
+}
