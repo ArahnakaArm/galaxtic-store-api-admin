@@ -54,3 +54,14 @@ export const throwInvalidPassword= () => {
     },
     )
 }
+
+export const throwSystemError= () => {
+    throw new GraphQLError(`System Error.`, {
+        extensions: {
+            http: {
+                status: 500
+            },
+        },
+    },
+    )
+}

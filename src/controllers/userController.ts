@@ -1,10 +1,10 @@
 import type { GraphQLContext } from '../context'
 import { createUuid } from '../services/common';
-import { throwConflict, throwInvalid, throwUnauthen, throwNotFound ,throwInvalidPassword} from '../error/throwError';
+import { throwConflict, throwInvalid, throwUnauthen, throwNotFound, throwInvalidPassword } from '../error/throwError';
 import { postUserValidate } from '../validate/userValidate';
 import { hash, compare } from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
-import * as dotenv from 'dotenv' 
+import * as dotenv from 'dotenv'
 dotenv.config()
 
 const APP_SECRET = process.env["JWT_SECRET"] as string
@@ -20,8 +20,8 @@ export const getUserById = async (context: GraphQLContext, id: any) => {
       user_id: id,
     },
   })
-  
-  if(!user){
+
+  if (!user) {
     throwNotFound();
   }
 
@@ -57,11 +57,11 @@ export const createUser = async (context: GraphQLContext, body: any) => {
 export const getUserByMe = async (context: GraphQLContext) => {
   const user = await context.prisma.users.findUnique({
     where: {
-      user_id: context.currentUser ? context.currentUser.user_id : '' ,
+      user_id: context.currentUser ? context.currentUser.user_id : '',
     },
   })
 
-  if(!user){
+  if (!user) {
     throwNotFound();
   }
 
@@ -88,22 +88,21 @@ export const loginUser = async (context: GraphQLContext, body: any) => {
 
   const token = sign({ userId: user!.user_id }, APP_SECRET)
 
-return { token, user }
+  return { token, user }
 }
 
-export const putUserByMe = async (context : GraphQLContext,body : any) => {
-    const {first_name,last_name} = body
-    const userId = context.currentUser?.user_id
-    console.log(userId)
-    const updatedUser = await context.prisma.users.update({
-      where :{
-        user_id : userId
-      },
-      data : {
-        first_name : first_name,
-        last_name : last_name
-      }
-    })
-    return updatedUser
+export const putUserByMe = async (context: GraphQLContext, body: any) => {
+  const { first_name, last_name } = body
+  const userId = context.currentUser?.user_id
+  const updatedUser = await context.prisma.users.update({
+    where: {
+      user_id: userId
+    },
+    data: {
+      first_name: first_name,
+      last_name: last_name
+    }
+  })
+  return updatedUser
 }
 
