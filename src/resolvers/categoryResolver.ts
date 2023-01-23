@@ -6,13 +6,16 @@ import { updateCategory } from '../controllers/categoryController';
 
 export const categoryResolver = {
   Query: {
-    categories: async (parent: unknown, args: {offset? : number , limit? : number}, context: GraphQLContext) => {
+    categories: async (parent: unknown, args: {offset? : number , limit? : number , search? : string}, context: GraphQLContext) => {
       if (context.currentUser == null) {
         throwUnauthen()
       }
       const cateRes = await getAllCategory(context , args)
-      return cateRes
+      const data = cateRes.categories 
+      const rowCount  = cateRes.categoryCount
+      return { data , rowCount}
     },
+    
 
   },
   Mutation: {

@@ -5,6 +5,6 @@ export const mainTypeDef = `
     users: [User!]
     userByMe : User
 
-    categories(offset: Int,limit: Int) : [Category!]
+    categories(offset: Int,limit: Int,search : String) : CategoryResponse
   }
 `

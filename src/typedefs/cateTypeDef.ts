@@ -1,6 +1,11 @@
 
 export const cateTypeDef = `
 scalar ISODate
+    type CategoryResponse {
+        data : [Category!]
+        rowCount : Int,
+        maxPage : Int
+    }
     type Category {
         main_category_id : String!
         main_category_name : String!
